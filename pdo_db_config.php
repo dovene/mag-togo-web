@@ -1,4 +1,5 @@
-<?php        
+<?php      
+include_once 'config_urls.php';  
 $PARAM_hote='localhost'; // le chemin vers le serveur
 $PARAM_port='3306';
 $PARAM_nom_bd='1046480'; // le nom de votre base de données

@@ -8,7 +8,7 @@ include 'apiCallHelperClass.php';
 if (isset($_GET['criteria'])) {
     $criteria = $_GET['criteria'];
 
-    $call = new ApiCallHelper('GET', 'http://dovene.coolpage.biz/checkApiCall.php?api_name=news', false);
+    $call = new ApiCallHelper('GET', $CHECK_METEO_API_HELPER, false);
     echo ($call->url);
 
     $result = $call->callAPI();
@@ -68,7 +68,7 @@ if (isset($_GET['criteria'])) {
                     "sendPush" => $sendPush, 
                     "imageOrigin" => "external");
 
-                    $url = "http://dovene.coolpage.biz/postNews.php";
+                    $url = $NEWS_POST_URL;
 
                     $callPostNewsApi = new ApiCallHelper($method, $url, $data);
                     $resPostNewsApi = $callPostNewsApi->callAPI();
@@ -79,7 +79,7 @@ if (isset($_GET['criteria'])) {
                 //save api_call_info
 
                 $dataPostApiInfo = array("api_name" => "news");
-                $callPostInfo = new ApiCallHelper('POST', 'http://dovene.coolpage.biz/postApiCallInfo.php', $dataPostApiInfo);
+                $callPostInfo = new ApiCallHelper('POST',$METEO_POST_API, $dataPostApiInfo);
                 echo ($call->url);
                 $res = $callPostInfo->callAPI();
                 if ($res === false) {

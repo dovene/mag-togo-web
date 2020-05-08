@@ -23,31 +23,9 @@ if (!isset($_SESSION['username'])) {
  <?php
  include_once('db_config.php');
 ?>
-     <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Projects</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="articles.php">Articles</a></li>
-            <li><a href="category.php">Categories</a></li>
-            <li><a href="infos.php">Infos Utiles</a></li>
-            <li class="active"><a href="history.php">Histoires</a></li>
-            <li><a href="videoos.php">Video</a></li>
-            <li><a href="album.php">Album</a></li>
-            <li><a href="logout.php">Deconnexion</a></li>
-            <li><a href="notif.php">Notification</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+<?php
+ include_once('nav.html');
+?>
  
 <br/>
 <br/>
@@ -248,10 +226,10 @@ $stmt->bindValue(':id', $id, PDO::PARAM_STR);
 //$stmt->execute();
 $affected_rows = $stmt->rowCount();
 if($affected_rows>0){
-echo "<script> alert ('Suppression effectuée')</script>";
+echo "<script> alert ('Suppression effectuï¿½e')</script>";
  
 } else {
-echo "<script> alert ('Suppression échouée')</script>";
+echo "<script> alert ('Suppression ï¿½chouï¿½e')</script>";
 }
  
 echo "<script> window.location.href='articles.php'</script>";
@@ -299,17 +277,17 @@ $stmt->execute();
  
 $affected_rows = $stmt->rowCount();
 if($affected_rows>0){
-echo "<script> alert ('Maj effectuée')</script>";
+echo "<script> alert ('Maj effectuï¿½e')</script>";
 
 $messageHistory = "Du nouveau dans votre rubrique histoire : ".$historyTitle;
 $method="POST";
 $data=array("message" => $messageHistory);
-$url="http://dovene.coolpage.biz/gcm_inline_caller.php";
+$url=$GCM_URL;
 CallAPI($method, $url, $data);
 
  
 } else {
-echo "<script> alert ('Maj échouée')</script>";
+echo "<script> alert ('Maj ï¿½chouï¿½e')</script>";
 }
  
 echo "<script> window.location.href='history.php'</script>";

@@ -27,7 +27,7 @@ if (isset($_GET['test'])) {
     $method = "POST";
     $data = array("title" => "News", "content" => "Content");
 
-    $url = "http://dovene.coolpage.biz/postNews.php";
+    $url = $NEWS_POST_URL;
 
     $call = new ApiCallHelper($method, $url, $data);
     echo ($call->url);

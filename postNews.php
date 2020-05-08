@@ -70,14 +70,14 @@ $json = array("status" => 1, "message" => "Insertion réussie", "info" => $resul
 // update homedata
 if ($isMainNewsValue =="1" ) {
     $method = "GET";
-    $url = "http://dovene.coolpage.biz/updateNewsInHomeData.php?title=".urlencode($title)."";    
+    $url = $UPDATE_NEWS_HOME_URL.urlencode($title)."";    
     $callSendNotification = new ApiCallHelper($method, $url, $data);
     $resSendNotification = $callSendNotification->callAPI();
 
  //lets update other items of home data
     $data = array("home" => "where-the-heart-is");
     $method = "POST";
-    $url = "http://dovene.coolpage.biz/updateStoriesAlbumsInHomeData.php";    
+    $url = $UPDATE_STORIES_HOME_URL;    
     $call = new ApiCallHelper($method, $url, $data);
     $call->callAPI();
 }
@@ -85,7 +85,7 @@ if ($isMainNewsValue =="1" ) {
 if ($newsType != "video" && $sendPush=="1" ) {
 $method = "POST";
 $data = array("message" => $title);
-$url = "http://dovene.coolpage.biz/gcm_inline_caller.php";
+$url = $GCM_URL;
 
 $callSendNotification = new ApiCallHelper($method, $url, $data);
 $resSendNotification = $callSendNotification->callAPI();

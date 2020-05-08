@@ -44,7 +44,7 @@ $stmt->execute();
 $messageStory = "Du nouveau dans votre rubrique histoire : ".$title;
 $method="POST";
 $dataStory=array("message" => $messageStory);
-$url="http://dovene.coolpage.biz/gcm_inline_caller.php";
+$url=$GCM_URL;
 $callNotificationStory = new ApiCallHelper($method, $url, $dataStory);
 //$callNotificationStory->callAPI();
 
@@ -92,7 +92,7 @@ $stmt->execute();
 $messageNotification = "Ne manquez pas votre album du moment, tout en images : ".$title;
 $method = "POST";
 $data = array("message" => $messageNotification);
-$url = "http://dovene.coolpage.biz/gcm_inline_caller.php";
+$url = $GCM_URL;
 $callNotification = new ApiCallHelper($method, $url, $data);
 //$callNotification->callAPI();
 

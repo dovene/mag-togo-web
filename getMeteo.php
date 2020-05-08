@@ -16,7 +16,7 @@ if (isset($_GET['city'])){
     }
 
 	$callWeatherExtApi = new ApiCallHelper('GET',
-	'http://dovene.coolpage.biz/getMeteoFromExtApi.php?city='.$cityForExtApi, false);
+	$METEO_URL.$cityForExtApi, false);
     $callWeatherExtApi->callAPI();
 
 

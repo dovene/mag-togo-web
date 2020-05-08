@@ -17,7 +17,7 @@ $api->redeem();
  //lets update other items of home data
     $data = array("home" => "where-the-heart-is");
     $method = "POST";
-    $url = "http://dovene.coolpage.biz/updateStoriesAlbumsInHomeData.php";    
+    $url = $UPDATE_STORIES_HOME_URL;    
     $call = new ApiCallHelper($method, $url, $data);
     $call->callAPI();
 

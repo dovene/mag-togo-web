@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
  
-    <title>Administration des bases de donn�es</title> 
+    <title>Administration des bases de donn�es</title> 
  
     <link href="bootstrap.min.css" rel="stylesheet"> 
     <link href="bootstrap-datepicker.min.css" rel="stylesheet"> 
@@ -27,32 +27,9 @@ $req = $db->prepare('select idCategory, libCategory, imgCategory from Category o
 $req->execute();
  
 ?>
-     <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Projects</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Articles</a></li>
-            <li><a href="category.php">Categorie d'article</a></li>
-            <li><a href="album.php">Album</a></li>
-            <li><a href="history.php">Histoires</a></li>
-            <li><a href="videoos.php">Video</a></li>
-            <li><a href="categoryAnnouncement.php">Categorie d'Annonce</a>
-            <li><a href="announcement.php">Annonce</a>
-             <li><a href="notif.php">Notification</a>
-           <li><a href="index.php">D�connexion</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+<?php
+ include_once('nav.html');
+?>
  
 <br/>
 <br/>
@@ -106,7 +83,7 @@ $req->execute();
                                 </tr>
  
                                 <tr>
-                                    <td  valign="top">Cat�gorie</td>
+                                    <td  valign="top">Cat�gorie</td>
                                     <td width="503"  valign="top">	
  
  
@@ -154,7 +131,7 @@ echo '<option value="'.$r->libCategory.'">'.$r->libCategory.'</ option>';
 								    </td>
                                 </tr>
 								<tr>
-                                    <td  valign="top">Ajouter la vid�o</td>
+                                    <td  valign="top">Ajouter la vid�o</td>
                                     <td width="503"  colspan="4" valign="top">
                                         <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
                                         <input type="file"  name="video" /></td>
@@ -211,7 +188,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
 {$data64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
      //On formate le nom du fichier ici...
      $fichier = strtr($fichier, 
-          'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝ� áâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+          'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝ� áâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
           'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
      $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
      if(move_uploaded_file($_FILES['image']['tmp_name'],$dossier.$fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
@@ -252,7 +229,7 @@ if(!isset($erreurVideo)) //S'il n'y a pas d'erreur, on upload
 {$data64 = base64_encode(file_get_contents($_FILES['video']['tmp_name']));
      //On formate le nom du fichier ici...
      $fichierVideo = strtr($fichierVideo, 
-          'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝ� áâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+          'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝ� áâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
           'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
      $fichierVideo = preg_replace('/([^.a-z0-9]+)/i', '-', $fichierVideo);
      if(move_uploaded_file($_FILES['video']['tmp_name'],$dossierVideo.$fichierVideo)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
@@ -290,16 +267,16 @@ $query->execute(array(':title' => $title, ':content' =>$content, ':category' => 
  ':sourceUrl' => $sourceUrl,':nbClicksReadMore' => $nbClicks, ':newsType' => $newsType , ':videoPath' => $fichierVideo));
 $affected_rows = $query->rowCount();
 if($affected_rows>0){
-echo "<script> alert ('Ajout effectu�e')</script>";
+echo "<script> alert ('Ajout effectu�e')</script>";
  if ($newsType<>"video"){
 $method="POST";
 $data=array("message" => $title);
-$url="http://dovene.coolpage.biz/gcm_inline_caller.php";
+$url=$GCM_URL;
 CallAPI($method, $url, $data);
  }
 
 } else {
-echo "<script> alert ('Ajout �chou�')</script>";
+echo "<script> alert ('Ajout �chou�')</script>";
 }
 } 
 ?>
@@ -315,7 +292,7 @@ echo "<script> alert ('Ajout �chou�')</script>";
  
                         <td align="center">Contenu</td>
  
-                        <td align="center">Cat�gorie</td>
+                        <td align="center">Cat�gorie</td>
  
                         <td align="center">Image</td>
  
@@ -411,10 +388,10 @@ $stmt->bindValue(':id', $id, PDO::PARAM_STR);
 $stmt->execute();
 $affected_rows = $stmt->rowCount();
 if($affected_rows>0){
-echo "<script> alert ('Suppression effectu�e')</script>";
+echo "<script> alert ('Suppression effectu�e')</script>";
  
 } else {
-echo "<script> alert ('Suppression �chou�e')</script>";
+echo "<script> alert ('Suppression �chou�e')</script>";
 }
  
 echo "<script> window.location.href='articles.php'</script>";
@@ -462,10 +439,10 @@ $stmt->execute();
  
 $affected_rows = $stmt->rowCount();
 if($affected_rows>0){
-echo "<script> alert ('Maj effectu�e')</script>";
+echo "<script> alert ('Maj effectu�e')</script>";
  
 } else {
-echo "<script> alert ('Maj �chou�e')</script>";
+echo "<script> alert ('Maj �chou�e')</script>";
 } 
 echo "<script> window.location.href='articles.php'</script>";
 }

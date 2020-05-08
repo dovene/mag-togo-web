@@ -17,32 +17,9 @@
  <?php
  include_once('db_config.php');
 ?>
-     <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Projects</a>
-        </div>
-		<div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="articles.php">Articles</a></li>
-            <li><a href="category.php">Categorie d'article</a></li>
-            <li><a href="album.php">Album</a></li>
-            <li><a href="history.php">Histoires</a></li>
-            <li><a href="videoos.php">Video</a></li>
-            <li><a href="categoryAnnouncement.php">Categorie d'Annonce</a>
-            <li><a href="announcement.php">Annonce</a>
-             <li><a href="notif.php">Notification</a>
-           <li><a href="index.php">Déconnexion</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+  <?php
+ include_once('nav.html');
+?>
  
 <br/>
 <br/>
@@ -53,7 +30,7 @@
       </div>
  
  		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"  style="color:#FFFFFF; background-color:#336600">
-            Ajouter une nouvelle vidéo
+            Ajouter une nouvelle vidï¿½o
         </button>
         <label id="nbRecords"></label>
          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -198,10 +175,10 @@ $stmt->bindValue(':id', $id, PDO::PARAM_STR);
 $stmt->execute();
 $affected_rows = $stmt->rowCount();
 if($affected_rows>0){
-echo "<script> alert ('Suppression effectuée')</script>";
+echo "<script> alert ('Suppression effectuï¿½e')</script>";
  
 } else {
-echo "<script> alert ('Suppression échouée')</script>";
+echo "<script> alert ('Suppression ï¿½chouï¿½e')</script>";
 }
  
  echo "<script> window.location.href='videoos.php'</script>";
@@ -235,17 +212,17 @@ $stUpdateHomeData->bindValue(':musicId', $id, PDO::PARAM_INT);
 $stUpdateHomeData->execute();
 $affected_rows = $stUpdateHomeData->rowCount();
 if($affected_rows>0){
-echo "<script> alert ('Maj effectuée')</script>";
+echo "<script> alert ('Maj effectuï¿½e')</script>";
  
 $messageHistory = "Passez de bons moments en musique avec le clip : ".$dataTitle;
 $method="POST";
 $data=array("message" => $messageHistory);
-$url="http://dovene.coolpage.biz/gcm_inline_caller.php";
+$url=$GCM_URL;
 CallAPI($method, $url, $data);
  
  
 } else {
-echo "<script> alert ('Maj échouée')</script>";
+echo "<script> alert ('Maj ï¿½chouï¿½e')</script>";
 }
  
 echo "<script> window.location.href='videoos.php'</script>";

@@ -31,7 +31,7 @@ if (isset($_GET['city'])) {
 
 
    
-    $call = new ApiCallHelper('GET', 'http://dovene.coolpage.biz/checkApiCall.php?api_name='.$api_name, false);
+    $call = new ApiCallHelper('GET', $CHECK_API.$api_name, false);
     echo ($call->url);
 
     $result = $call->callAPI();
@@ -88,7 +88,7 @@ if (isset($_GET['city'])) {
                 echo("wind".$responseNewsApi['wind']['speed']) ;      
                 
 
-                $url = "http://dovene.coolpage.biz/postMeteo.php";
+                $url = $METEO_POST;
 
                 $callPostNewsApi = new ApiCallHelper($method, $url, $data);
                 $resPostNewsApi = $callPostNewsApi->callAPI();
@@ -102,7 +102,7 @@ if (isset($_GET['city'])) {
                 //save api_call_info
 
                 $dataPostApiInfo = array("api_name" => $api_name);
-                $callPostInfo = new ApiCallHelper('POST', 'http://dovene.coolpage.biz/postApiCallInfo.php', $dataPostApiInfo);
+                $callPostInfo = new ApiCallHelper('POST', $METEO_POST_API, $dataPostApiInfo);
                 echo ($call->url);
                 $res = $callPostInfo->callAPI();
                 if ($res === false) {
