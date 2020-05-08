@@ -1,6 +1,6 @@
 <?php
 
-$BASE_URL='http://192.168.64.2/'; //$BASE_URL='http://dovene.coolpage.biz/';
+$BASE_URL='http://vps-a2e51ecf.vps.ovh.net/'; //$BASE_URL='http://dovene.coolpage.biz/';
 $BASE_IMAGES_URL=$BASE_URL.'images/'; 
 $GCM_URL=$BASE_URL.'gcm_inline_caller.php';
 $METEO_URL=$BASE_URL.'getMeteoFromExtApi.php?city=';
