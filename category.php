@@ -81,7 +81,8 @@ if (!isset($_SESSION['username'])) {
 
 
 <?php
-if($_POST['libelle']){
+
+if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['libelle'])){
 // Get post data`
 $lib = isset($_POST['libelle']) ? $_POST['libelle'] : "";
 $image = isset($_POST['image']) ? $_POST['image'] : "";

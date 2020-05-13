@@ -9,7 +9,17 @@
                 from Album
                 where status ="1"
                 order by idAlbum desc
-                Limit 1');			
+				Limit 1');	
+				
+		if (isset($_GET['type']) && $_GET['type']=='all'){
+			$qur = $db->prepare('select idAlbum, libAlbum, pathImage1 , pathImage2, pathImage3,
+			pathImage4,pathImage5,pathImage6,pathImage7,pathImage8,pathImage9,pathImage10,pathImage11,
+			pathImage12,pathImage13,pathImage14,pathImage15,pathImage16,pathImage17,pathImage18,
+			pathImage19,pathImage20, status
+					from Album
+					order by idAlbum');	
+		}
+				
 		$qur->execute();
 		$result =array();
 		while($r = $qur->fetch(PDO::FETCH_OBJ)){
